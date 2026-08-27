@@ -1,0 +1,105 @@
+generated: '2026-08-27'
+method: derived
+source: https://github.com/sightmachine/sightmachine-sdk
+note: >-
+  Derived from the first-party Python SDK's entity modules and the endpoint paths they
+  call, not from an OpenAPI (none is published). Every entity and endpoint below appears
+  verbatim in smsdk source at commit cb8fe167ed7f75975e6bc4f0f82306784ac2b169. Field-level
+  schemas are deliberately NOT enumerated: they are tenant-specific and are discovered at
+  runtime through get_machine_schema(), so listing them would be invention.
+entities:
+- name: MachineType
+  description: >-
+    A class of production asset (e.g. a lasercut station, a filler). Carries the metadata
+    and the statistic set shared by every machine of that type.
+  endpoint: /v1/selector/assets
+  sdk_methods:
+  - get_machine_type_names
+  - get_machine_types
+- name: Machine
+  description: An individual physical asset on a line, belonging to a MachineType.
+  endpoint: /v1/selector/assets
+  sdk_methods:
+  - get_machine_names
+  - get_machine_schema
+- name: Cycle
+  description: >-
+    One production cycle on a machine — the core time-series record of the platform, and
+    the primary unit analysts retrieve.
+  endpoint: /v1/datatab/cycle
+  sdk_methods:
+  - get_cycles
+- name: Downtime
+  description: A recorded interval in which a machine was not producing, with its reason coding.
+  endpoint: /v1/datatab/downtime
+- name: Part
+  description: >-
+    A discrete produced item, typed by part_type. Field metadata for a part type is fetched
+    per type rather than globally.
+  endpoint: /v1/datatab/part
+  field_endpoint: /v1/selector/datatab/part/{part_type}/field
+- name: Line
+  description: An ordered arrangement of machines forming a production line.
+  endpoint: /v1/datatab/line
+- name: RawData
+  description: Uncontextualised source records as ingested by FactoryTX before modelling.
+  endpoint: /v1/datatab/raw_data
+- name: KPI
+  description: A computed production metric selectable as a chart axis.
+  endpoint: /v1/selector/datavis/kpi/y_axis
+- name: Dashboard
+  description: >-
+    A saved collection of panels/widgets. The Dashboard API resolves a dashboard into its
+    fully-computed panel values for external consumption.
+  endpoint: /v1/obj/dashboard/{dashboard_id}/full_values
+  panel_fields:
+  - data
+  - id
+  - name
+  - status
+  - type
+- name: Workspace
+  description: >-
+    A schema-scoped development environment. Selectable through the SDK and exposed to
+    ODBC clients as a PostgreSQL schema named workspace_{workspace_id}; production data
+    lives in the `sightmachine` schema of the `tenant_storage` database.
+  sdk_methods:
+  - select_workspace_id
+relationships:
+- from: Machine
+  to: MachineType
+  type: belongs_to
+  via: machine type name
+- from: MachineType
+  to: Machine
+  type: has_many
+- from: Cycle
+  to: Machine
+  type: belongs_to
+  via: asset/machine identifier
+- from: Downtime
+  to: Machine
+  type: belongs_to
+  via: asset/machine identifier
+- from: Line
+  to: Machine
+  type: has_many
+- from: Part
+  to: Cycle
+  type: belongs_to
+  via: cycle association on the production record
+- from: Dashboard
+  to: KPI
+  type: has_many
+  via: panel/widget configuration
+- from: Workspace
+  to: Cycle
+  type: has_many
+  via: schema scoping (workspace_{id} vs sightmachine)
+gaps:
+- >-
+  No id-prefix convention is documented (unlike, say, Stripe's `cus_`/`ch_`), and no
+  canonical object reference page exists.
+- >-
+  Per-entity field schemas are tenant-specific and only discoverable at runtime via
+  get_machine_schema(); they are not published and are not reproduced here.

@@ -1,0 +1,32 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.sightmachine.com/docs/release-notes
+scheme: dated-product-release
+url: https://docs.sightmachine.com/docs/release-notes
+scope: >-
+  Platform release notes covering Control Plane, Build, Analyze and Operate. These are
+  product release notes, not an API changelog — no API-surface change entries (added or
+  removed endpoints, field changes) are published.
+entries:
+- date: '2026-04-07'
+  breaking: false
+  highlights:
+  - 'Control Plane: factory structure management with guided setup, bulk CSV upload, inline tag editing and automatic validation.'
+  - 'Build: Version History Diff Tool for comparing application versions side by side.'
+  - 'Analyze: fixes to KPI display errors, widget title consistency, shared table links and mobile navigation.'
+  - 'Operate: 2D line layout editor, operator station configuration, line data collection controls, and Omniverse streaming improvements.'
+  - 'General: improved workspace copy performance; pipeline persistence fixes.'
+sdk_changelog:
+  url: https://github.com/sightmachine/sightmachine-sdk/blob/master/CHANGELOG.md
+  entries:
+  - version: v1.26.1
+    breaking: false
+    highlights:
+    - Resolved installation issue of the Sight Machine SDK on Windows systems.
+  - version: v1.26.0
+    breaking: false
+    highlights:
+    - Added release version checks for APIs.
+note: >-
+  Only one dated entry was retrievable from the public release-notes page; earlier entries
+  are not exposed in the rendered document. Recorded as found rather than padded.

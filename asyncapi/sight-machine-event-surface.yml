@@ -1,0 +1,61 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.sightmachine.com/docs/mqtt-transmit.md
+asyncapi_spec: false
+webhooks: false
+note: >-
+  Sight Machine has a real streaming/event surface, but it is neither an AsyncAPI document
+  nor a webhook catalog, so no AsyncAPI or Webhooks pointer is emitted. The surface is
+  FactoryTX, the edge data layer: it consumes events from plant systems and can re-publish
+  records to a broker the CUSTOMER owns. Because the broker, topic and payload shape are
+  all set in customer configuration rather than published by Sight Machine, there is no
+  provider-side channel catalog to capture — recording one would be fabrication.
+channels:
+- direction: inbound
+  protocol: mqtt
+  name: MQTT Data Receiver
+  url: https://docs.sightmachine.com/docs/mqtt-data-receiver.md
+  description: FactoryTX subscribes to a customer MQTT broker to ingest plant records.
+- direction: inbound
+  protocol: opc-ua
+  name: OPC UA Data Receiver
+  url: https://docs.sightmachine.com/docs/opc-ua-data-receive.md
+  description: FactoryTX reads tags from customer OPC UA servers.
+- direction: outbound
+  protocol: mqtt
+  name: MQTT Transmit
+  url: https://docs.sightmachine.com/docs/mqtt-transmit.md
+  description: >-
+    FactoryTX publishes matched record streams to a customer-nominated MQTT broker.
+  configuration_contract:
+    required:
+    - host
+    - port
+    - topic
+    - transmit_name
+    - transmit_type
+    - filter_stream
+    optional:
+    - client_id
+    - username
+    - password
+    - additional_fields
+    - timeout
+    - poll_interval
+    - max_request_records
+    - max_request_size_bytes
+    - opc_payload_metadata
+    - opc_message_metadata
+    - use_opc_publisher_format
+  payload_formats:
+  - name: default record payload
+  - name: OPC Publisher telemetry format
+    enabled_by: use_opc_publisher_format
+    reference: https://github.com/Azure/Industrial-IoT/tree/main/docs/opc-publisher#opc-publisher-telemetry-formats
+  limits:
+    max_request_size_bytes: 4194304
+    default_timeout_seconds: 120
+gaps:
+- No AsyncAPI document is published for any of these channels.
+- No HTTP webhook/callback surface is documented anywhere in the 281-page docs index.
+- Topics are customer-defined, so there is no canonical topic namespace to conform against.

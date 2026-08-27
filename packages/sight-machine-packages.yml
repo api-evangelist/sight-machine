@@ -1,0 +1,30 @@
+generated: '2026-08-27'
+method: searched
+source: https://github.com/sightmachine/sightmachine-sdk
+note: >-
+  Sight Machine ships exactly one first-party client library, the Python SDK `smsdk`.
+  It is NOT published to PyPI — pypi.org/pypi/smsdk/json and pypi.org/pypi/sightmachine-sdk/json
+  both return 404 — and the provider's own README instructs installation directly from
+  the git repository. The unrelated `sight-machine` package on PyPI (0.5, published
+  2019-12-07, homepage github.com/dbajet/sight_machine) is third-party and is deliberately
+  NOT listed here. npm, RubyGems, crates.io, NuGet, Maven Central and pkg.go.dev were
+  checked and carry no first-party Sight Machine library.
+packages:
+- language: python
+  registry: github
+  name: smsdk
+  url: https://github.com/sightmachine/sightmachine-sdk
+  install: pip install git+https://github.com/sightmachine/sightmachine-sdk.git
+  official: true
+  version: v1.26.1+dev
+  published: '2026-04-14'
+  version_source: >-
+    smsdk/_version.py (VersionInfo(1, 26, 1, "+dev")) at commit
+    cb8fe167ed7f75975e6bc4f0f82306784ac2b169; `published` is that commit's author date,
+    because there is no registry release and the repository publishes no git tags.
+  note: >-
+    No registry metadata endpoint exists for this package — it is distributed from git
+    only, and the repo carries no tags, so a consumer pinning a version must pin a commit
+    SHA. The CHANGELOG.md in the repo is the release record.
+  changelog: https://github.com/sightmachine/sightmachine-sdk/blob/master/CHANGELOG.md
+  docs: https://docs.sightmachine.com/docs/sdk

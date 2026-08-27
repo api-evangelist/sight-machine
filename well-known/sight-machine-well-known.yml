@@ -1,0 +1,53 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.sightmachine.com/.well-known/security.txt
+note: >-
+  Probed the marketing/apex host, the docs host and a live customer tenant host.
+  Only the RFC 9116 security.txt on the sightmachine.com apex/www pair returned a real
+  document; it was saved verbatim. The docs host (Document360) answers every
+  /.well-known/* path with a 404 HTML shell, and the tenant host answers with a JSON
+  not_found envelope, so neither is a catch-all false positive.
+hit_count: 1
+hosts:
+- host: https://www.sightmachine.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: sight-machine-security.txt
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://sightmachine.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: sight-machine-security.txt
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://docs.sightmachine.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://demo.sightmachine.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404

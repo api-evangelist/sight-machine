@@ -1,0 +1,46 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.sightmachine.com/docs/release-notes
+versioning:
+  api_version: v1
+  scheme: uri-path
+  policy_published: false
+  note: >-
+    The API is versioned in the path (/v1/) but no written versioning policy, support
+    window, or breaking-change contract could be found on any public page.
+release_notes:
+  url: https://docs.sightmachine.com/docs/release-notes
+  status: 200
+  cadence: irregular / product-release driven
+  scope: platform (Control Plane, Build, Analyze, Operate), not API-specific
+sdk_changelog:
+  url: https://github.com/sightmachine/sightmachine-sdk/blob/master/CHANGELOG.md
+  latest: v1.26.1
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation policy, no Sunset/Deprecation header documentation, and no deprecated
+    operations could be identified — there is no OpenAPI to read `deprecated: true` from.
+status_page:
+  published: false
+  probes:
+  - url: https://status.sightmachine.com/
+    status: <no response>
+    note: Host did not resolve/respond; abandoned after one attempt per pipeline probe budget.
+  - url: https://www.sightmachine.com/
+    status: 200
+    note: No status-page link present in navigation, footer, or sitemap.
+  note: >-
+    No public status page or uptime dashboard was found. Because the platform is deployed
+    per-tenant, availability reporting may be handled inside each customer environment.
+sla:
+  published: false
+  note: >-
+    The Software and Services Agreement (https://www.sightmachine.com/software-and-services-agreement)
+    is the only public contract document; no separate uptime SLA page is published.
+gaps:
+- No status page pointer emitted — none exists.
+- No deprecation policy pointer emitted — none exists.

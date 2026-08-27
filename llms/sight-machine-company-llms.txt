@@ -1,0 +1,72 @@
+# Sight Machine
+
+> Sight Machine is the Industrial AI company. We deliver AI agents and a semantic data layer that turn raw plant data into decisions — reducing downtime, improving quality, and optimizing production across manufacturing enterprises.
+
+Founded in 2011 and headquartered in San Francisco and Ann Arbor, Sight Machine serves 20+ industries across 20+ countries. Backed by Microsoft, NVentures, Mitsui, and others.
+
+## What we do
+
+Sight Machine brings three capabilities to manufacturing:
+
+1. **Semantic Model** — Connects to all OT and IT systems (historians, MES, ERP, PLCs, documents, SOPs) and builds a structured digital model of the plant. Proprietary Blueprint SLM maps tags to physical assets automatically. This is the data foundation everything else runs on.
+
+2. **Dynamic Production** — AI agents that continuously monitor every line, investigate anomalies, surface root causes, and recommend corrective actions. Agents work with process experts — not instead of them.
+
+3. **Enterprise Agents** — Publishes manufacturing intelligence as an MCP server so any agent in the enterprise can use it. Connects to Microsoft Teams, NVIDIA Omniverse, Databricks, and other enterprise tools.
+
+## Solutions (use cases)
+
+- **Dynamic Scheduling** — Agents replan production schedules in real time as conditions change. Constraint-aware replanning using fine-tuned optimization models. < 5 min to a revised schedule after a disruption.
+- **Uptime & Availability** — Continuous fault monitoring, root cause investigation, and corrective action tracking. 34% reduction in unplanned downtime.
+- **Quality & Yield** — Real-time quality KPI tracking, pattern investigation, and pre-batch risk flagging. 40% reduction in quality escapes.
+- **Process Improvement & Changeover** — Process parameter optimization, cross-line comparison, and changeover analysis. 6 min average time recovered per changeover.
+- **Commissioning & Ramp** — New line monitoring from day one against best-practice baselines. 3-week reduction in time to target performance.
+- **Energy & Waste** — Production-normalized energy consumption analysis. 23% reduction in energy cost per unit.
+
+## Industries served
+
+Food & Beverage, Automotive, Consumer Packaged Goods, Industrial Equipment, Metals / Glass / Paper / Process. Also active in chemicals, life sciences, packaging, and 15+ other verticals.
+
+## Key differentiators
+
+- **Blueprint SLM** — Proprietary specialized language model that maps plant tags to physical assets automatically, without manual configuration.
+- **Semantic layer for OT/IT** — The only platform that structures industrial data (not just aggregates it) so AI agents can reason on it.
+- **Deploys in days** — Not months. The semantic model and first agents are live in a typical plant within a week.
+- **Human-in-the-loop** — Agents do the first pass on every analysis. Process experts review, refine, and approve. The model has provenance.
+- **MCP server** — Manufacturing intelligence is published as an MCP server, making it accessible to any agent in the enterprise stack.
+
+## Leadership
+
+- Jon Sobel — CEO & Co-Founder
+- Nathan Oostendorp — CTO & Co-Founder
+- Kurt DeMaagd — Chief AI Officer & Co-Founder
+- Sudhir Arni — SVP, Business Outcomes
+- Andrew Home — VP, Product
+- Sudhir Subramanian — VP, Engineering
+- Kanna Potharlanka — SVP, Global New Client Sales
+- Jay Seirmarco — SVP, Business Affairs
+
+## Investors & partners
+
+Microsoft, NVentures, Sorensen Capital, LS Group, Asahi Kasei, Future Energy Ventures, Mitsui, TeamViewer, Mercury Fund, Realization Capital
+
+## Pages
+
+- Homepage: https://www.sightmachine.com/
+- About: https://www.sightmachine.com/about.html
+- Careers: https://www.sightmachine.com/careers.html
+- News: https://www.sightmachine.com/news.html
+- Platform — Semantic Model: https://www.sightmachine.com/platform-semantic-model.html
+- Platform — Dynamic Production: https://www.sightmachine.com/platform-dynamic-production.html
+- Platform — Enterprise Agents: https://www.sightmachine.com/platform-enterprise-agents.html
+- Solution — Dynamic Scheduling: https://www.sightmachine.com/solution-scheduling.html
+- Solution — Uptime & Availability: https://www.sightmachine.com/solution-uptime.html
+- Solution — Quality & Yield: https://www.sightmachine.com/solution-quality.html
+- Solution — Changeover: https://www.sightmachine.com/solution-changeover.html
+- Solution — Commissioning & Ramp: https://www.sightmachine.com/solution-commissioning.html
+- Solution — Energy & Waste: https://www.sightmachine.com/solution-energy.html
+- Industry — Food & Beverage: https://www.sightmachine.com/industry-food-beverage.html
+- Industry — Automotive: https://www.sightmachine.com/industry-automotive.html
+- Industry — Consumer Packaged Goods: https://www.sightmachine.com/industry-cpg.html
+- Industry — Industrial Equipment: https://www.sightmachine.com/industry-industrial-equipment.html
+- Industry — Metals, Glass, Paper & Process: https://www.sightmachine.com/industry-metals-glass.html

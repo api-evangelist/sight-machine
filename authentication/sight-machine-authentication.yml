@@ -1,0 +1,63 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.sightmachine.com/docs/apis
+docs: https://docs.sightmachine.com/docs/apis
+note: >-
+  Derived from the provider's own API and SDK documentation and confirmed against the
+  live tenant host. There is no OpenAPI to derive securitySchemes from, so this profile
+  was written from the docs and from the first-party SDK's login implementation.
+  Unauthenticated requests to https://demo.sightmachine.io/v1/datatab/cycle were observed
+  returning HTTP 401 with {"error":"unauthenticated"} on 2026-08-27.
+schemes:
+- id: api-key-pair
+  type: apiKey
+  in: header
+  names:
+  - X-SM-API-Key-Id
+  - X-SM-API-Secret
+  description: >-
+    The primary programmatic credential. A key id and its matching secret are generated
+    inside the tenant UI under Settings > Profile > Security, and both are sent as
+    separate request headers on every call. This is the credential used by the Dashboard
+    API, by the SDK's apikey login mode, and by the ODBC/JDBC connector (where the key
+    is the username and the secret is the password).
+  provisioning: https://docs.sightmachine.com/docs/apis
+  scope: tenant
+- id: basic-login
+  type: http
+  scheme: basic
+  description: >-
+    Interactive email + password login, exposed by the SDK as
+    cli.login('basic', email=..., password=...). Establishes a session cookie against the
+    tenant host. Intended for human/notebook use, not for automation.
+  scope: tenant
+- id: edge-api-key
+  type: apiKey
+  in: header
+  description: >-
+    A separate class of key, called an Edge API key, minted under CONNECT in the platform
+    UI and used to authenticate FactoryTX edge collectors uploading raw plant data into
+    the tenant. Distinct from the Dashboard/SDK key pair — it authorises ingestion, not
+    query.
+  provisioning: https://docs.sightmachine.com/docs/apis
+  scope: tenant-ingestion
+oauth2: false
+openid_connect: false
+mutual_tls: false
+observations:
+- url: https://demo.sightmachine.io/v1/datatab/cycle
+  status: 401
+  body: '{"description":"Not logged in or invalid API key provided","details":{},"error":"unauthenticated"}'
+- url: https://demo.sightmachine.io/v1/obj/dashboard/1/full_values
+  status: 401
+  body: '{"description":"Not logged in or invalid API key provided","details":{},"error":"unauthenticated"}'
+- url: https://demo.sightmachine.io/.well-known/openid-configuration
+  status: 404
+- url: https://demo.sightmachine.io/.well-known/oauth-authorization-server
+  status: 404
+gaps:
+- >-
+  No OAuth 2.0, no OpenID Connect discovery document and no published scope model —
+  credentials are tenant-wide key pairs with no documented least-privilege granularity.
+- >-
+  Key rotation and expiry policy is not documented on any public page.

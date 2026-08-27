@@ -1,0 +1,55 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.sightmachine.com/platform-enterprise-agents
+status: claimed-not-published
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+note: >-
+  Sight Machine markets an MCP server prominently — its own llms.txt says "Publishes
+  manufacturing intelligence as an MCP server so any agent in the enterprise can use it",
+  and the Enterprise Agents page repeats the claim — but publishes NO endpoint URL, no
+  install command, no package, and no documentation page. The 281-page documentation index
+  at docs.sightmachine.com/llms.txt contains zero occurrences of "MCP" or "Model Context
+  Protocol". Probes for a hosted endpoint all missed. The most likely reading is that the
+  server is provisioned inside each customer tenant rather than offered at a public
+  address, which means no agent outside a paying tenant can reach it and no schema can be
+  introspected. `mode: none` records that nobody ships a reachable server, not that the
+  provider has done no work. NO MCPServer pointer is emitted in apis.yml: emitting one
+  would credit Sight Machine with an agent surface that cannot be called.
+probes:
+- url: https://mcp.sightmachine.com
+  status: <no response>
+  note: Host did not resolve. One attempt, not retried.
+- url: https://mcp.sightmachine.io
+  status: <no response>
+  note: Host did not resolve. One attempt, not retried.
+- url: https://demo.sightmachine.io/mcp
+  status: 404
+  method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+- url: https://demo.sightmachine.io/v1/mcp
+  status: 404
+- url: https://docs.sightmachine.com/llms.txt
+  status: 200
+  note: 281 documentation pages indexed; no MCP page.
+related_agent_surfaces:
+- name: Microsoft 365 / Teams Agent
+  url: https://docs.sightmachine.com/docs/m365-agent
+  description: >-
+    A documented, real agent integration — a Sight Machine agent installed into a
+    customer's Microsoft Teams tenant, answering natural-language questions about machines
+    and KPIs and returning structured tables into Excel. This is a packaged M365 agent, not
+    an MCP endpoint, and is not callable by a third-party agent runtime.
+- name: Factory CoPilot
+  url: https://docs.sightmachine.com/docs/factory-copilot
+  description: Natural-language interface over the platform built on Azure OpenAI Service.
+candidate_tools: []
+candidate_tools_note: >-
+  No candidate tool list is derived. Deriving one would require an OpenAPI to ground
+  operationIds in, and Sight Machine publishes none; the endpoint set known from the SDK is
+  real but its parameter schemas are tenant-specific and discovered at runtime, so any
+  inputSchema written here would be invented.

@@ -1,0 +1,50 @@
+generated: '2026-08-27'
+method: probed
+source: https://demo.sightmachine.io/v1/datatab/cycle
+note: >-
+  Sight Machine publishes no OpenAPI, and no error reference page exists in the public
+  documentation. This catalog is therefore built from error envelopes OBSERVED on the
+  live tenant host on 2026-08-27, not from a spec and not from prose. Only envelopes that
+  were actually returned to an anonymous request are recorded; the authenticated error
+  surface is not visible from outside and is explicitly not guessed at here.
+format: vendor-json
+rfc9457: false
+envelope:
+  media_type: application/json
+  fields:
+  - name: error
+    type: string
+    description: Machine-readable error slug. The field an agent should branch on.
+  - name: description
+    type: string
+    description: Human-readable sentence explaining the failure.
+  - name: details
+    type: object
+    description: >-
+      Structured detail bag. Observed empty ({}) on both anonymous error classes; its
+      populated shape is not documented publicly.
+  example: '{"description":"Not logged in or invalid API key provided","details":{},"error":"unauthenticated"}'
+problem_types:
+- code: unauthenticated
+  http_status: 401
+  title: Not logged in or invalid API key provided
+  observed_at: https://demo.sightmachine.io/v1/datatab/cycle
+  remediation: >-
+    Send both X-SM-API-Key-Id and X-SM-API-Secret headers with a key pair generated in the
+    tenant under Settings > Profile > Security, or establish a session via basic login.
+  method: probed
+- code: not_found
+  http_status: 404
+  title: The requested page or resource was not found
+  observed_at: https://demo.sightmachine.io/v1/openapi.json
+  remediation: >-
+    Check the path and API version prefix. The platform surface is versioned under /v1/;
+    unknown paths return this envelope rather than an HTML page.
+  method: probed
+gaps:
+- >-
+  No public error reference. Rate-limit, validation, and server-error envelopes could not
+  be observed anonymously and are not recorded rather than being invented.
+- >-
+  Errors are not RFC 9457 (application/problem+json); they use a bespoke
+  error/description/details envelope with no type URI and no instance identifier.

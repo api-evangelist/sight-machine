@@ -1,0 +1,85 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.sightmachine.com/docs/opc-ua-data-receive.md
+note: >-
+  Sight Machine publishes no compliance certifications on any public page — the security
+  page carries a vulnerability-reporting form and names no SOC 2, ISO 27001, PCI, HIPAA or
+  FedRAMP audit. No Compliance pointer is emitted, because there is nothing published to
+  point at. What Sight Machine does declare, and declares in its own connector contracts
+  rather than in marketing prose, is the industrial interoperability stack.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 flow documented; /.well-known/oauth-authorization-server on the tenant host
+    returned 404 on 2026-08-27. Authentication is a static API key/secret header pair.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 404 on demo.sightmachine.io (2026-08-27).
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    Live error bodies use a bespoke {"error","description","details"} envelope with
+    content-type application/json, not application/problem+json.
+- id: rfc9116
+  conforms: true
+  evidence: >-
+    https://www.sightmachine.com/.well-known/security.txt returns 200 with Contact,
+    Expires, Preferred-Languages and Canonical fields.
+- id: hsts
+  conforms: true
+  evidence: >-
+    strict-transport-security: max-age=15724800; includeSubDomains observed on
+    https://demo.sightmachine.io/v1/datatab/cycle (2026-08-27).
+- id: pagination
+  conforms: false
+  evidence: No pagination contract documented on any public page.
+- id: idempotency
+  conforms: false
+  evidence: Not applicable — no public write surface. See conventions/sight-machine-conventions.yml.
+domain_standards:
+- id: opc-ua
+  name: OPC Unified Architecture (IEC 62541)
+  conforms: true
+  role: consumer
+  evidence: >-
+    FactoryTX ships a first-party OPC UA Data Receiver
+    (https://docs.sightmachine.com/docs/opc-ua-data-receive.md), and the MQTT Transmit
+    connector exposes a `use_opc_publisher_format` option plus `opc_payload_metadata` and
+    `opc_message_metadata` fields that emit payloads matching Azure Industrial IoT's OPC
+    Publisher telemetry format
+    (https://github.com/Azure/Industrial-IoT/tree/main/docs/opc-publisher#opc-publisher-telemetry-formats).
+    The GitHub org also carries a fork of python-opcua.
+  location: FactoryTX connector configuration contract
+- id: mqtt
+  name: MQTT
+  conforms: true
+  role: both
+  evidence: >-
+    FactoryTX publishes both an MQTT Data Receiver
+    (https://docs.sightmachine.com/docs/mqtt-data-receiver.md) and an MQTT Transmit
+    connector (https://docs.sightmachine.com/docs/mqtt-transmit.md) with a documented
+    configuration contract — host, port, topic, client_id, credentials, payload sizing.
+  location: FactoryTX connector configuration contract
+- id: postgresql-wire
+  name: PostgreSQL wire protocol
+  conforms: true
+  role: server
+  evidence: >-
+    The ODBC/JDBC connector serves tenant data over PostgreSQL on port 5432, database
+    `tenant_storage`, schema `sightmachine`, authenticating with the API key as username
+    and the API secret as password
+    (https://docs.sightmachine.com/docs/odbc-connector.md). This makes standard
+    PostgreSQL clients — PowerBI, Mendix, any JDBC tool — first-class consumers.
+  location: ODBC connector documentation
+certifications: []
+compliance_programs: []
+gaps:
+- >-
+  No SOC 2, ISO 27001, HIPAA, PCI or FedRAMP attestation is published, and no trust center
+  exists — notable for a vendor selling into regulated manufacturing (food and beverage,
+  life sciences, automotive) whose buyers routinely require them at procurement.
+- >-
+  No Sparkplug B declaration. The MQTT surface is topic-agnostic and customer-configured,
+  so it does not carry the Sparkplug namespace that would let a manufacturing buyer
+  integrate with no bespoke connector.

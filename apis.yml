@@ -1,23 +1,132 @@
 aid: sight-machine
 name: Sight Machine
-description: 'Sight Machine is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Sight Machine is an industrial AI company (founded 2011, San Francisco
+  and Ann Arbor) whose Manufacturing Data Platform connects to plant OT and IT systems
+  — historians, MES, ERP, PLCs, OPC UA servers and MQTT brokers — and builds a semantic
+  model of the factory that AI agents reason over. The platform is delivered as a
+  per-customer tenant at {tenant}.sightmachine.io, and exposes its production data
+  through a versioned /v1 REST surface (Dashboard API plus datatab/selector data endpoints),
+  a first-party Python SDK (smsdk), and a PostgreSQL-wire ODBC/JDBC connector. Edge
+  ingestion runs through FactoryTX, which speaks OPC UA, MQTT, SQL and file/cloud-store
+  protocols. Authentication is by API key and secret headers issued per tenant; there
+  is no public sandbox, no published pricing, and the API reference itself is served
+  from inside the authenticated tenant environment.'
 url: https://raw.githubusercontent.com/api-evangelist/sight-machine/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-27'
 modified: '2026-08-27'
 tags:
-- Company
-apis: []
+- Manufacturing
+- Industrial IoT
+- Analytics
+- Artificial Intelligence
+- Agents
+- Data
+- OPC UA
+- MQTT
+- Digital Twin
+- Operations
+apis:
+- aid: sight-machine-dashboard-api
+  name: Sight Machine Dashboard API
+  description: 'REST endpoint that returns the fully-resolved values behind a Sight
+    Machine dashboard, panel by panel, so dashboard data can be consumed by external
+    enterprise applications. Authenticated with a tenant API key id and secret passed
+    as X-SM-API-Key-Id and X-SM-API-Secret headers. Widgets must be configured for
+    background loading before their data is reachable through the API.'
+  humanURL: https://docs.sightmachine.com/docs/apis
+  baseURL: https://{tenant}.sightmachine.io
+  tags:
+  - Dashboards
+  - Analytics
+  - Manufacturing
+  properties:
+  - type: Documentation
+    url: https://docs.sightmachine.com/docs/apis
+  - type: Authentication
+    url: authentication/sight-machine-authentication.yml
+  - type: ErrorCatalog
+    url: errors/sight-machine-problem-types.yml
+- aid: sight-machine-platform-data-api
+  name: Sight Machine Platform Data API
+  description: 'The /v1 datatab and selector surface of the Sight Machine Manufacturing
+    Data Platform — cycles, downtime, parts, lines, raw data, machine types, machine
+    schemas and KPI selectors. This is the surface the first-party Python SDK (smsdk)
+    calls. It is served from the customer tenant host and requires an API key id and
+    secret, or a session established by basic login.'
+  humanURL: https://docs.sightmachine.com/docs/sdk
+  baseURL: https://{tenant}.sightmachine.io
+  tags:
+  - Manufacturing
+  - Analytics
+  - Data
+  properties:
+  - type: Documentation
+    url: https://docs.sightmachine.com/docs/sdk
+  - type: SourceCode
+    url: https://github.com/sightmachine/sightmachine-sdk
+  - type: DataModel
+    url: data-model/sight-machine-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/sight-machine-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.sightmachine.com/
+- type: Documentation
+  url: https://docs.sightmachine.com/docs/overview
+- type: APIReference
+  url: https://docs.sightmachine.com/docs/apis
+- type: GettingStarted
+  url: https://docs.sightmachine.com/docs/overview
+- type: GitHubOrganization
+  url: https://github.com/sightmachine
+- type: PrivacyPolicy
+  url: https://www.sightmachine.com/privacy-policy
+- type: TermsOfService
+  url: https://www.sightmachine.com/software-and-services-agreement
+- type: Security
+  url: https://www.sightmachine.com/security
+- type: LinkedIn
+  url: https://linkedin.com/company/sight-machine
+- type: ChangeLog
+  url: changelog/sight-machine-changelog.yml
+- type: Packages
+  url: packages/sight-machine-packages.yml
+- type: SDKs
+  url: packages/sight-machine-packages.yml
+- type: WellKnown
+  url: well-known/sight-machine-well-known.yml
+- type: SecurityTxt
+  url: well-known/sight-machine-security.txt
+- type: LLMsTxt
+  url: llms/sight-machine-llms.txt
+- type: Authentication
+  url: authentication/sight-machine-authentication.yml
+- type: Conventions
+  url: conventions/sight-machine-conventions.yml
+- type: ErrorCatalog
+  url: errors/sight-machine-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/sight-machine-lifecycle.yml
+- type: Conformance
+  url: conformance/sight-machine-conformance.yml
+- type: DataModel
+  url: data-model/sight-machine-data-model.yml
+- type: Plans
+  url: plans/sight-machine-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/sight-machine-rate-limits.yml
+- type: VulnerabilityDisclosure
+  url: security/sight-machine-vulnerability-disclosure.yml
+x-enrichment:
+  date: '2026-08-27'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1

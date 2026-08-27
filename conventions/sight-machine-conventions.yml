@@ -1,0 +1,84 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.sightmachine.com/docs/apis
+note: >-
+  Assembled from the provider's public documentation, the first-party Python SDK source
+  (github.com/sightmachine/sightmachine-sdk), and live observation of the tenant host on
+  2026-08-27. There is no OpenAPI to derive from.
+authentication:
+  style: api-key-pair-headers
+  headers:
+  - X-SM-API-Key-Id
+  - X-SM-API-Secret
+  alternative: basic login session (SDK `basic` mode)
+  detail: authentication/sight-machine-authentication.yml
+versioning:
+  style: uri-path
+  current: v1
+  example: https://{tenant}.sightmachine.io/v1/datatab/cycle
+  media_type_versioning: false
+  header_versioning: false
+  note: >-
+    The SDK added "release version checks for API's" in v1.26.0, implying a
+    server-advertised platform version, but no version-negotiation header is documented
+    publicly.
+tenancy:
+  model: per-customer-subdomain
+  pattern: https://{tenant}.sightmachine.io
+  note: >-
+    Every host is customer-specific. There is no shared api.sightmachine.com host, which
+    is why the base URL is templated rather than absolute.
+error_envelope:
+  shape: '{"error": "<slug>", "description": "<sentence>", "details": {}}'
+  rfc9457: false
+  detail: errors/sight-machine-problem-types.yml
+pagination:
+  documented: false
+  note: >-
+    The SDK exposes limit-style arguments on data-retrieval calls (get_cycles and
+    siblings), but no pagination contract — no cursor, no link header, no total-count
+    field — is documented publicly. Not asserted here.
+filtering:
+  documented: true
+  style: query-parameters
+  examples:
+  - db_mode=sql
+  - strip_aliases=false
+  note: >-
+    Observed in first-party SDK source at
+    /v1/selector/datatab/part/{part_type}/field?db_mode=sql&strip_aliases=false
+request_id_tracing:
+  documented: false
+rate_limit_signaling:
+  documented: false
+  detail: rate-limits/sight-machine-rate-limits.yml
+idempotency:
+  supported: na
+  reason: >-
+    The public surface is read-only data retrieval — dashboard values, cycles, downtime,
+    parts, lines, raw data, machine schemas. No public write endpoint is documented, so
+    there is nothing to make idempotent. Ingestion writes happen through FactoryTX edge
+    collectors using a separate Edge API key and a configuration file, not through a
+    public request API.
+dry_run_mode:
+  supported: na
+  reason: No public write surface.
+reversibility:
+  grade: na
+  reason: >-
+    No public write, mutate or delete operation exists on the documented API surface, so
+    there is no action for an agent to take back. The Dashboard API returns values; the
+    datatab/selector endpoints return production records. Reversibility, dry-run and
+    idempotency are all genuinely not applicable rather than absent.
+  write_surfaces: []
+  checked: '2026-08-27'
+  evidence:
+  - url: https://docs.sightmachine.com/docs/apis
+    note: Documents only GET-style retrieval of dashboard values.
+  - url: https://docs.sightmachine.com/docs/sdk
+    note: SDK is described as retrieval-only, "the ability to retrieve data from the platform".
+transport_security:
+  hsts: true
+  observed: 'strict-transport-security: max-age=15724800; includeSubDomains'
+  observed_at: https://demo.sightmachine.io/v1/datatab/cycle
+  csp: "frame-ancestors 'self' *.sightmachine.io"
