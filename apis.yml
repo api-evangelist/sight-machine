@@ -39,6 +39,16 @@ tags:
 - OPC UA
 - MQTT
 - Digital Twin
+tags_raw:
+- Manufacturing
+- Industrial IoT
+- Analytics
+- Artificial Intelligence
+- Agents
+- Data
+- OPC UA
+- MQTT
+- Digital Twin
 - Operations
 apis:
 - aid: sight-machine-dashboard-api
