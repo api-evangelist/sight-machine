@@ -1,16 +1,15 @@
 generated: '2026-08-27'
-method: searched
+method: none
 source: https://www.sightmachine.com/
+name: Sight Machine pricing
 plan_count: 0
 model: enterprise-contact-sales
-currency: null
 plans: []
-note: >-
-  Sight Machine publishes no pricing of any kind. There is no /pricing page (probed, 404),
-  no pricing entry in the sitemap (31 URLs, none commercial), and no plan or tier language
-  in the navigation or footer. The site's only commercial call to action is a demo request
-  form embedded on the homepage (demo-form.js). Contracting is via the Software and
-  Services Agreement effective 2025-10-01. This is an honest zero, not an unchecked field.
+note: Sight Machine publishes no pricing of any kind. There is no /pricing page (probed, 404), no pricing
+  entry in the sitemap (31 URLs, none commercial), and no plan or tier language in the navigation or footer.
+  The site's only commercial call to action is a demo request form embedded on the homepage (demo-form.js).
+  Contracting is via the Software and Services Agreement effective 2025-10-01. This is an honest zero,
+  not an unchecked field.
 evidence:
 - url: https://www.sightmachine.com/pricing
   status: 404
@@ -20,3 +19,8 @@ evidence:
 - url: https://www.sightmachine.com/software-and-services-agreement
   status: 200
   note: Master agreement; contains no published rate card.
+audience: unclear
+pricing_basis: none
+published: false
+delivery:
+  delivery: managed

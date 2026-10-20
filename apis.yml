@@ -1,5 +1,7 @@
 aid: sight-machine
+
 name: Sight Machine
+
 description: Sight Machine is an industrial AI company (founded 2011, San Francisco and Ann Arbor) whose
   Manufacturing Data Platform connects to plant OT and IT systems — historians, MES, ERP, PLCs, OPC UA
   servers and MQTT brokers — and builds a semantic model of the factory that AI agents reason over. The
@@ -9,9 +11,13 @@ description: Sight Machine is an industrial AI company (founded 2011, San Franci
   which speaks OPC UA, MQTT, SQL and file/cloud-store protocols. Authentication is by API key and secret
   headers issued per tenant; there is no public sandbox, no published pricing, and the API reference itself
   is served from inside the authenticated tenant environment.
+
 url: https://raw.githubusercontent.com/api-evangelist/sight-machine/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:secondary-market
+
 deliveryModel:
   model: saas
   license_evidence:
@@ -27,6 +33,7 @@ deliveryModel:
   - repository-not-product
   generated: '2026-09-25'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: approval
@@ -42,9 +49,13 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 specificationVersion: '0.20'
+
 created: '2026-08-27'
+
 modified: '2026-10-06'
+
 tags:
 - Manufacturing
 - Industrial IoT
@@ -55,6 +66,7 @@ tags:
 - OPC UA
 - MQTT
 - Digital Twin
+
 tags_raw:
 - Manufacturing
 - Industrial IoT
@@ -66,51 +78,24 @@ tags_raw:
 - MQTT
 - Digital Twin
 - Operations
-apis:
-- aid: sight-machine:sight-machine-dashboard-api
-  name: Sight Machine Dashboard API
-  description: REST endpoint that returns the fully-resolved values behind a Sight Machine dashboard,
-    panel by panel, so dashboard data can be consumed by external enterprise applications. Authenticated
-    with a tenant API key id and secret passed as X-SM-API-Key-Id and X-SM-API-Secret headers. Widgets
-    must be configured for background loading before their data is reachable through the API.
-  humanURL: https://docs.sightmachine.com/docs/apis
-  baseURL: https://{tenant}.sightmachine.io
-  tags:
-  - Dashboards
-  - Analytics
-  - Manufacturing
-  properties:
-  - type: Documentation
-    url: https://docs.sightmachine.com/docs/apis
-  - type: Authentication
-    url: authentication/sight-machine-authentication.yml
-  - type: ErrorCatalog
-    url: errors/sight-machine-problem-types.yml
-- aid: sight-machine:sight-machine-platform-data-api
-  name: Sight Machine Platform Data API
-  description: The /v1 datatab and selector surface of the Sight Machine Manufacturing Data Platform —
-    cycles, downtime, parts, lines, raw data, machine types, machine schemas and KPI selectors. This is
-    the surface the first-party Python SDK (smsdk) calls. It is served from the customer tenant host and
-    requires an API key id and secret, or a session established by basic login.
-  humanURL: https://docs.sightmachine.com/docs/sdk
-  baseURL: https://{tenant}.sightmachine.io
-  tags:
-  - Manufacturing
-  - Analytics
-  - Data
-  properties:
-  - type: Documentation
-    url: https://docs.sightmachine.com/docs/sdk
-  - type: SourceCode
-    url: https://github.com/sightmachine/sightmachine-sdk
-  - type: DataModel
-    url: data-model/sight-machine-data-model.yml
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: LLMsTxt
+  url: llms/sight-machine-company-llms.txt
+- type: Hosts
+  url: hosts/sight-machine-hosts.yml
+- type: IntegrationEdges
+  url: integrations/sight-machine-integration-edges.yml
+- type: Vendors
+  url: vendors/sight-machine-vendors.yml
+- type: Newsroom
+  url: https://www.sightmachine.com/news
 - url: https://www.sightmachine.com/news
   type: Blog
 - type: DomainSecurity
@@ -157,14 +142,60 @@ common:
   url: conformance/sight-machine-conformance.yml
 - type: DataModel
   url: data-model/sight-machine-data-model.yml
-- type: Plans
-  url: plans/sight-machine-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/sight-machine-rate-limits.yml
 - type: VulnerabilityDisclosure
   url: security/sight-machine-vulnerability-disclosure.yml
+
+apis:
+- aid: sight-machine:sight-machine-dashboard-api
+  name: Sight Machine Dashboard API
+  description: REST endpoint that returns the fully-resolved values behind a Sight Machine dashboard,
+    panel by panel, so dashboard data can be consumed by external enterprise applications. Authenticated
+    with a tenant API key id and secret passed as X-SM-API-Key-Id and X-SM-API-Secret headers. Widgets
+    must be configured for background loading before their data is reachable through the API.
+  humanURL: https://docs.sightmachine.com/docs/apis
+  baseURL: https://{tenant}.sightmachine.io
+  tags:
+  - Dashboards
+  - Analytics
+  - Manufacturing
+  properties:
+  - type: Documentation
+    url: https://docs.sightmachine.com/docs/apis
+  - type: Authentication
+    url: authentication/sight-machine-authentication.yml
+  - type: ErrorCatalog
+    url: errors/sight-machine-problem-types.yml
+- aid: sight-machine:sight-machine-platform-data-api
+  name: Sight Machine Platform Data API
+  description: The /v1 datatab and selector surface of the Sight Machine Manufacturing Data Platform —
+    cycles, downtime, parts, lines, raw data, machine types, machine schemas and KPI selectors. This is
+    the surface the first-party Python SDK (smsdk) calls. It is served from the customer tenant host and
+    requires an API key id and secret, or a session established by basic login.
+  humanURL: https://docs.sightmachine.com/docs/sdk
+  baseURL: https://{tenant}.sightmachine.io
+  tags:
+  - Manufacturing
+  - Analytics
+  - Data
+  properties:
+  - type: Documentation
+    url: https://docs.sightmachine.com/docs/sdk
+  - type: SourceCode
+    url: https://github.com/sightmachine/sightmachine-sdk
+  - type: DataModel
+    url: data-model/sight-machine-data-model.yml
 x-enrichment:
-  date: '2026-08-27'
-  status: enriched
-  artifacts_added: 18
-  pass: local-v1
+  date: '2026-10-20'
+  status: nochange
+  artifacts_added: 0
+  pass: local-v5
+x-coverage:
+  state: unreadable
+  reason: no-machine-readable-spec
+  detail: Sight Machine documents its /v1 Dashboard and datatab endpoints only in prose at docs.sightmachine.com/docs/apis, with no published OpenAPI and the reference served inside the authenticated {tenant}.sightmachine.io environment.
+  evidence:
+  - url: https://docs.sightmachine.com/docs/apis
+    status: 200
+  - url: https://demo.sightmachine.io/v1/openapi.json
+    status: 404
+  checked: '2026-10-20'

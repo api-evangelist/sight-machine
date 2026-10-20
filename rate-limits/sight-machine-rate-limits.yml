@@ -1,24 +1,22 @@
 generated: '2026-08-27'
-method: searched
+method: none
 source: https://docs.sightmachine.com/docs/apis
+name: Sight Machine rate limits
 limit_count: 0
-rate_limits: []
 response_headers: []
 exhaustion_status: null
-note: >-
-  No published rate limits. The API documentation (docs.sightmachine.com/docs/apis) and the
-  SDK documentation describe authentication and endpoints but state no quota, no window, no
-  burst allowance and no throttling behaviour. No RateLimit-*, X-RateLimit-* or Retry-After
-  header was observed on live responses from the tenant host. The docs do carry a
-  "Configuring Running Pipeline Limit" page, but that governs data-pipeline concurrency
-  inside the platform, not API request rate, and is not recorded as a rate limit here.
-  An honest zero: checked, nothing published.
+note: 'No published rate limits. The API documentation (docs.sightmachine.com/docs/apis) and the SDK documentation
+  describe authentication and endpoints but state no quota, no window, no burst allowance and no throttling
+  behaviour. No RateLimit-*, X-RateLimit-* or Retry-After header was observed on live responses from the
+  tenant host. The docs do carry a "Configuring Running Pipeline Limit" page, but that governs data-pipeline
+  concurrency inside the platform, not API request rate, and is not recorded as a rate limit here. An
+  honest zero: checked, nothing published.'
 evidence:
 - url: https://docs.sightmachine.com/docs/apis
   status: 200
   note: No rate-limit, quota or throttling section.
 - url: https://demo.sightmachine.io/v1/datatab/cycle
   status: 401
-  note: >-
-    Response headers observed in full — strict-transport-security and content-security-policy
-    present, no rate-limit signalling header of any form.
+  note: "Response headers observed in full \u2014 strict-transport-security and content-security-policy\
+    \ present, no rate-limit signalling header of any form."
+limits: []

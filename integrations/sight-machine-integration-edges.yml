@@ -1,8 +1,19 @@
-generated: '2026-10-13'
+generated: '2026-10-20'
 method: searched
+source:
+- microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+- https://zapier.com/apps/sight-machine/integrations
+- https://n8n.io/integrations/sight-machine/
+- https://composio.dev/toolkits/sight-machine
+- https://monid.ai/tools/sight-machine
 checked:
 - https://azuremarketplace.microsoft.com/
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+- https://composio.dev/toolkits/sight-machine
+- https://monid.ai/tools/sight-machine
+- https://n8n.io/integrations/sight-machine/
+- https://zapier.com/apps/sight-machine/integrations
+summary: null
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Teams (own)
@@ -43,5 +54,4 @@ edges:
   seller_name: Sight Machine, Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-source:
-- microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+templates: []
